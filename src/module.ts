@@ -27,13 +27,20 @@ export default defineNuxtModule<ModuleOptions>({
     // Read script from disk and add to options
     const scriptPath = await resolver.resolve("./script.min.js");
     const scriptRaw = await fsp.readFile(scriptPath, "utf-8");
-    type ScriptOption = "storageKey" | "classPrefix" | "globalName";
+    type ScriptOption =
+      | "storageKey"
+      | "classPrefix"
+      | "globalName"
+      | "fallback";
     const script = scriptRaw
-      .replace(
-        /<%= options\.([^ ]+) %>/g,
-        (_, option: ScriptOption) => options[option]
-      )
+      .replace(/<%= options\.([^ ]+) %>/g, (_, option: ScriptOption) => {
+        if (option === "fallback") {
+          return JSON.stringify(options[option]);
+        }
+        return options[option];
+      })
       .trim();
+    console.log(script);
 
     // Inject options via virtual template
     nuxt.options.alias["#nuxt-class-inject-options"] = addTemplate({

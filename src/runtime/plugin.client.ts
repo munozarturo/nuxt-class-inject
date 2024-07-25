@@ -4,6 +4,7 @@ import { ref, watch } from "vue";
 import { defineNuxtPlugin } from "#app";
 
 interface ClassInjectHelper {
+  getClassList: () => string[];
   addClassName: (className: string) => void;
   removeClassName: (className: string) => void;
 }
@@ -13,7 +14,13 @@ const helper = (window[globalName] || {}) as unknown as ClassInjectHelper;
 export default defineNuxtPlugin((nuxtApp) => {
   const getStoredClasses = (): string[] => {
     try {
-      return JSON.parse(localStorage.getItem(storageKey) || "[]");
+      const classList = localStorage.getItem(storageKey);
+      if (classList) return JSON.parse(classList);
+      else {
+        const classList = helper.getClassList();
+        localStorage.setItem(storageKey, JSON.stringify(classList));
+        return classList;
+      }
     } catch {
       return [];
     }
