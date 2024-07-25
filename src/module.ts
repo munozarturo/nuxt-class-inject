@@ -33,14 +33,13 @@ export default defineNuxtModule<ModuleOptions>({
       | "globalName"
       | "fallback";
     const script = scriptRaw
-      .replace(/<%= options\.([^ ]+) %>/g, (_, option: ScriptOption) => {
+      .replace(/"<%= options\.([^ ]+) %>"/g, (_, option: ScriptOption) => {
         if (option === "fallback") {
           return JSON.stringify(options[option]);
         }
-        return options[option];
+        return `"${options[option]}"`;
       })
       .trim();
-    console.log(script);
 
     // Inject options via virtual template
     nuxt.options.alias["#nuxt-class-inject-options"] = addTemplate({
