@@ -9,7 +9,6 @@ import { promises as fsp } from "node:fs";
 import { resolve } from "pathe";
 
 const DEFAULTS: ModuleOptions = {
-  classPrefix: "",
   storageKey: "nuxt-class-inject",
   globalName: "__NUXT_CLASS_INJECT__",
   fallback: ["font-sans", "light-theme"],
@@ -27,11 +26,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Read script from disk and add to options
     const scriptPath = await resolver.resolve("./script.min.js");
     const scriptRaw = await fsp.readFile(scriptPath, "utf-8");
-    type ScriptOption =
-      | "storageKey"
-      | "classPrefix"
-      | "globalName"
-      | "fallback";
+    type ScriptOption = "storageKey" | "globalName" | "fallback";
     const script = scriptRaw
       .replace(/"<%= options\.([^ ]+) %>"/g, (_, option: ScriptOption) => {
         if (option === "fallback") {
@@ -82,10 +77,6 @@ export interface ModuleOptions {
    * @default 'nuxt-class-inject'
    */
   storageKey: string;
-  /**
-   * @default ''
-   */
-  classPrefix: string;
   /**
    * @default '__NUXT_CLASS_INJECT__'
    */
