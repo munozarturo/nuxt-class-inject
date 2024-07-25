@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   modules: ["../src/module"],
   myModule: {},
-  devtools: { enabled: true },
+  css: ["~/assets/main.css"],
   compatibilityDate: "2024-07-25",
 });
