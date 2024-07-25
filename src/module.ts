@@ -24,7 +24,9 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir);
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve("./runtime/plugin"));
+    for (const template of ["plugin.client", "plugin.server"]) {
+      addPlugin(resolve(runtimeDir, template));
+    }
 
     // Nuxt 3 and Bridge - inject script
     nuxt.hook("nitro:config", (config) => {
