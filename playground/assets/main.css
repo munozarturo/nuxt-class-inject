@@ -7,7 +7,7 @@
   --border-color: #ddd;
 }
 
-.dark-mode {
+.nci-dark-theme {
   --color: #ebf4f1;
   --color-primary: #41b38a;
   --color-secondary: #fdf9f3;
@@ -16,7 +16,7 @@
   --border-color: #0d2538;
 }
 
-.sepia-mode {
+.nci-sepia-theme {
   --color: #433422;
   --color-secondary: #504231;
   --bg: #f1e7d0;

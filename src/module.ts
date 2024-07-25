@@ -3,23 +3,30 @@ import { addPlugin, createResolver, defineNuxtModule } from "@nuxt/kit";
 import { promises as fsp } from "node:fs";
 import { resolve } from "pathe";
 
-// Module options TypeScript interface definition
-export interface ModuleOptions {}
+const DEFAULTS: ModuleOptions = {
+  classPrefix: "",
+  storageKey: "nuxt-class-inject",
+};
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "my-module",
-    configKey: "myModule",
+    name: "nuxt-class-inject",
+    configKey: "classInject",
   },
-  // Default configuration options of the Nuxt module
-  defaults: {},
+  defaults: DEFAULTS,
   async setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    // load script
+    // Read script from disk and add to options
     const scriptPath = await resolver.resolve("./script.min.js");
     const scriptRaw = await fsp.readFile(scriptPath, "utf-8");
-    const script = scriptRaw;
+    type ScriptOption = "storageKey" | "classPrefix";
+    const script = scriptRaw
+      .replace(
+        /<%= options\.([^ ]+) %>/g,
+        (_, option: ScriptOption) => options[option]
+      )
+      .trim();
 
     const runtimeDir = await resolver.resolve("./runtime");
     nuxt.options.build.transpile.push(runtimeDir);
@@ -43,3 +50,14 @@ export default defineNuxtModule<ModuleOptions>({
     });
   },
 });
+
+export interface ModuleOptions {
+  /**
+   * @default 'nuxt-class-inject'
+   */
+  storageKey: string;
+  /**
+   * @default ''
+   */
+  classPrefix: string;
+}
