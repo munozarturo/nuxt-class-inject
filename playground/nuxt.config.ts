@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
-  modules: ["../src/module"],
+  modules: ["../src/module", "@nuxtjs/tailwindcss"],
   classInject: {},
-  css: ["~/assets/main.css", "@nuxtjs/tailwindcss"],
+  css: ["~/assets/main.css"],
   compatibilityDate: "2024-07-25",
 });
