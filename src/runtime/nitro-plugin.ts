@@ -1,6 +1,6 @@
 import type { NitroAppPlugin } from "nitropack";
 
-import { script } from "#injected-script";
+import { script } from "#nuxt-class-inject-script";
 
 export default <NitroAppPlugin>function (nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {

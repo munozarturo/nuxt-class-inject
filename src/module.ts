@@ -35,8 +35,8 @@ export default defineNuxtModule<ModuleOptions>({
       .trim();
 
     // Inject options via virtual template
-    nuxt.options.alias["#injected-script-options"] = addTemplate({
-      filename: "injected-script-options.mjs",
+    nuxt.options.alias["#nuxt-class-inject-options"] = addTemplate({
+      filename: "nuxt-class-inject-options.mjs",
       getContents: () =>
         Object.entries(options)
           .map(
@@ -62,7 +62,7 @@ export default defineNuxtModule<ModuleOptions>({
       config.externals.inline.push(runtimeDir);
       config.virtual = config.virtual || {};
       config.virtual[
-        "#injected-script"
+        "#nuxt-class-inject-script"
       ] = `export const script = ${JSON.stringify(script, null, 2)}`;
       config.plugins = config.plugins || [];
       config.plugins.push(resolve(runtimeDir, "nitro-plugin"));

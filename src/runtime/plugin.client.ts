@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from "#app";
-import { globalName } from "#injected-script-options";
+import { globalName } from "#nuxt-class-inject-options";
 import { useState } from "#imports";
 
 const helper = (window[globalName] || {}) as unknown as {
