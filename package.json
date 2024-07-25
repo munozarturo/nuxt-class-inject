@@ -1,9 +1,17 @@
 {
-  "name": "my-module",
+  "name": "nuxt-class-inject",
   "version": "1.0.0",
   "description": "My new Nuxt module",
-  "repository": "your-org/my-module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/munozarturo/nuxt-class-inject.git"
+  },
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Arturo Munoz"
+    }
+  ],
   "type": "module",
   "exports": {
     ".": {
@@ -18,15 +26,14 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build build",
+    "prepack": "nuxt-module-build build && esbuild --minify src/script.js --outfile=dist/script.min.js",
+    "build": "pnpm run prepack",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint .",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "@nuxt/kit": "^3.12.4"
