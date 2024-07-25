@@ -12,6 +12,7 @@ const DEFAULTS: ModuleOptions = {
   classPrefix: "",
   storageKey: "nuxt-class-inject",
   globalName: "__NUXT_CLASS_INJECT__",
+  fallback: ["font-sans", "light-theme"],
 };
 
 export default defineNuxtModule<ModuleOptions>({
@@ -83,4 +84,8 @@ export interface ModuleOptions {
    * @default '__NUXT_CLASS_INJECT__'
    */
   globalName: string;
+  /**
+   * @default '[]'
+   */
+  fallback: string[];
 }
