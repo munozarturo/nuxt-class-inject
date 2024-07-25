@@ -1,4 +1,9 @@
-import { addPlugin, createResolver, defineNuxtModule } from "@nuxt/kit";
+import {
+  addPlugin,
+  addTemplate,
+  createResolver,
+  defineNuxtModule,
+} from "@nuxt/kit";
 
 import { promises as fsp } from "node:fs";
 import { resolve } from "pathe";
@@ -6,6 +11,7 @@ import { resolve } from "pathe";
 const DEFAULTS: ModuleOptions = {
   classPrefix: "",
   storageKey: "nuxt-class-inject",
+  globalName: "__NUXT_CLASS_INJECT__",
 };
 
 export default defineNuxtModule<ModuleOptions>({
@@ -20,13 +26,26 @@ export default defineNuxtModule<ModuleOptions>({
     // Read script from disk and add to options
     const scriptPath = await resolver.resolve("./script.min.js");
     const scriptRaw = await fsp.readFile(scriptPath, "utf-8");
-    type ScriptOption = "storageKey" | "classPrefix";
+    type ScriptOption = "storageKey" | "classPrefix" | "globalName";
     const script = scriptRaw
       .replace(
         /<%= options\.([^ ]+) %>/g,
         (_, option: ScriptOption) => options[option]
       )
       .trim();
+
+    // Inject options via virtual template
+    nuxt.options.alias["#injected-script-options"] = addTemplate({
+      filename: "injected-script-options.mjs",
+      getContents: () =>
+        Object.entries(options)
+          .map(
+            ([key, value]) =>
+              `export const ${key} = ${JSON.stringify(value, null, 2)}
+      `
+          )
+          .join("\n"),
+    }).dst;
 
     const runtimeDir = await resolver.resolve("./runtime");
     nuxt.options.build.transpile.push(runtimeDir);
@@ -60,4 +79,8 @@ export interface ModuleOptions {
    * @default ''
    */
   classPrefix: string;
+  /**
+   * @default '__NUXT_CLASS_INJECT__'
+   */
+  globalName: string;
 }
