@@ -14,6 +14,6 @@ describe("ssr: false, dev mode", async () => {
   });
   it("renders", async () => {
     const html = await $fetch("/");
-    expect(html).toContain("getItem('nuxt-color-mode')");
+    expect(html).toContain("getItem('nuxt-class-inject')");
   });
 });
