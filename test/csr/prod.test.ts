@@ -15,6 +15,6 @@ describe("ssr: false, target: server, prod mode", async () => {
 
   it("render", async () => {
     const html = await $fetch("/");
-    expect(html).toContain("getItem('nuxt-class-inject')");
+    expect(html).toContain('getItem("nuxt-class-inject")');
   });
 });
