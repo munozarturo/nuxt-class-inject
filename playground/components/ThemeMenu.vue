@@ -18,7 +18,7 @@
     "
   >
     <div class="w-full h-fit flex flex-row justify-between">
-      <h2 class="text-xl font-bold">theme menu</h2>
+      <h2 class="text-xl font-bold">theme</h2>
       <button
         class="mr-1 hover:text-background-secondary text-xl"
         @click="closeMenu()"
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="flex flex-col gap-2">
-        <h3 class="text-md font-bold">theme</h3>
+        <h3 class="text-md font-bold">color scheme</h3>
         <div class="flex flex-wrap gap-2 px-2">
           <button
             v-for="theme in themes"

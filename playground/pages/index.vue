@@ -25,8 +25,13 @@
       >&nbsp;tag before the content is loaded. As an added bonus this also
       persists the injected classes.
     </p>
+    <p class="text-lg">
+      Try it out by using the
+      <code class="bg-foreground text-background p-1">customize</code
+      >&nbsp;button at the top right of this page.
+    </p>
     <h2 class="text-3xl font-bold" id="contents">contents</h2>
-    <ul class="text-lg list-disc pl-4">
+    <ul class="text-lg flex flex-col gap-1 pl-4">
       <li>
         <a
           href="#features"
