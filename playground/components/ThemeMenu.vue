@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-const classInject = useClassInject();
+const { $classInject } = useNuxtApp();
 
 const menuOpen = ref<boolean>(false);
 
@@ -66,27 +66,27 @@ const themes: string[] = ["light", "paper", "dark", "desert", "ocean", "forest"]
 const currentTheme = ref<string | null>(null);
 
 const setFont = (font: string) => {
-  const current: string[] = classInject.classList.value as unknown as string[];
+  const current: string[] = $classInject.classList.value as unknown as string[];
 
   const classList = current.filter((cls) => !cls.startsWith("font-"));
   classList.push(`font-${font}`);
 
-  classInject.classList.value = classList;
+  $classInject.classList.value = classList;
   currentFont.value = font;
 };
 
 const setTheme = (theme: string) => {
-  const current: string[] = classInject.classList.value as unknown as string[];
+  const current: string[] = $classInject.classList.value as unknown as string[];
 
   const classList = current.filter((cls) => !cls.startsWith("theme-"));
   classList.push(`theme-${theme}`);
 
-  classInject.classList.value = classList;
+  $classInject.classList.value = classList;
   currentTheme.value = theme;
 };
 
 const computeCurrentFontAndTheme = () => {
-  const current: string[] = classInject.classList.value as unknown as string[];
+  const current: string[] = $classInject.classList.value as unknown as string[];
 
   fontTypes.forEach((font) => {
     if (current.includes(`font-${font}`)) currentFont.value = font;

@@ -6,7 +6,7 @@ import { resolve } from "pathe";
 const DEFAULTS: ModuleOptions = {
   storageKey: "nuxt-class-inject",
   globalName: "__NUXT_CLASS_INJECT__",
-  fallback: ["font-sans", "light-theme"],
+  fallback: [],
 };
 
 export default defineNuxtModule<ModuleOptions>({

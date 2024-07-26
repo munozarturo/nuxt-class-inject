@@ -19,6 +19,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // Provide the classList to the app
   nuxtApp.provide("classInject", {
-    classList,
+    classList: classList,
   });
 });

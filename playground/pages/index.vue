@@ -94,16 +94,16 @@
       <MultiPre
         :tabs="['yarn', 'npm', 'pnpm']"
         :contents="{
-          yarn: 'yarn add --dev @nuxt-class-inject',
-          npm: 'npm install --save-dev @nuxt-class-inject',
-          pnpm: 'pnpm install --save-dev @nuxt-class-inject',
+          yarn: '\nyarn add --dev @nuxt-class-inject',
+          npm: '\nnpm install --save-dev @nuxt-class-inject',
+          pnpm: '\npnpm install --save-dev @nuxt-class-inject',
         }"
       />
       <ProseP>
         Then add <ProseCode>@nuxt-class-inject</ProseCode>&nbsp;to the
         <ProseCode>modules</ProseCode>&nbsp;section of your <ProseCode>nuxt.config.ts</ProseCode>
       </ProseP>
-      <ProsePre lang="bash" file="nuxt.config.ts">npm install @nuxt-class-inject</ProsePre>
+      <ProsePre lang="bash" file="nuxt.config.ts">{{ nuxtConfigDefineModule }}</ProsePre>
     </ProseSection>
     <ProseSection id="usage" class="flex flex-col gap-4">
       <ProseH2>usage</ProseH2>
@@ -128,11 +128,31 @@
         You can configure the module through the <ProseCode>classInject</ProseCode> property in your
         <ProseCode>nuxt.config.js</ProseCode>. The default options are
       </ProseP>
-      <ProsePre lang="ts" file="nuxt.config.js">{{ metaObject }}</ProsePre>
+      <ProsePre lang="ts" file="nuxt.config.js">{{ nuxtCofigConfigModule }}</ProsePre>
+      <ProseP>The config options are:</ProseP>
+      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+        <li>
+          <ProseCode>storageKey</ProseCode>: the storage key used to store injected classes in the
+          browser&lsquo;s local storage
+        </li>
+        <li>
+          <ProseCode>globalName</ProseCode>: the global name used by the module which is used to
+          inject JavaScript into the
+          <ProseCode>window</ProseCode>
+        </li>
+        <li>
+          <ProseCode>fallback</ProseCode>: the classes to inject in case no classes are found in
+          local storage
+        </li>
+      </ul>
     </ProseSection>
     <ProseSection id="tailwind-css" class="flex flex-col gap-4">
       <ProseH2>tailwind css</ProseH2>
-      <ProseP>This module has high interoperability with tailwind css.</ProseP>
+      <ProseP
+        >This module has high interoperability with tailwind css. All you have to do is define
+        variables in your CSS classes instead of changing styles directly, and then register these
+        variables in the project&lsquo;s <ProseCode>tailwind.config.js</ProseCode> file.
+      </ProseP>
     </ProseSection>
     <ProseSection id="credit" class="flex flex-col gap-4">
       <ProseH2>credit</ProseH2>
@@ -155,18 +175,21 @@ useHead({
   title: "nuxt-class-inject",
 });
 
-const metaObject = `
-interface MetaObject {
-  title?: string
-  titleTemplate?: string | ((title?: string) => string)
-  base?: Base
-  link?: Link[]
-  meta?: Meta[]
-  style?: Style[]
-  script?: Script[]
-  noscript?: Noscript[]
-  htmlAttrs?: HtmlAttributes
-  bodyAttrs?: BodyAttributes
+const nuxtConfigDefineModule = `
+export default defineNuxtConfig({
+  modules: [
+    "@nuxt-class-inject", 
+  ],
+});`;
+
+const nuxtCofigConfigModule = `
+export default defineNuxtConfig {
+  modules: ["@nuxt-class-inject",],
+  classInject: {
+    storageKey: "nuxt-class-inject",
+    globalName: "__NUXT_CLASS_INJECT__",
+    fallback: [""],
+  },
 }`;
 
 const exampleApp = `
@@ -204,4 +227,8 @@ const exampleApp = `
     color: #433422;
   }
 </style>`;
+
+const tailwindConfig = ``;
+
+const tailwindExampleApp = ``;
 </script>

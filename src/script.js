@@ -8,7 +8,7 @@
   const classNames =
     (ls && ls.getItem && JSON.parse(ls.getItem("<%= options.storageKey %>"))) ||
     "<%= options.fallback %>";
-  classNames.map((className) => addClassName(className));
+  classNames.forEach((className) => addClassName(className));
 
   w["<%= options.globalName %>"] = {
     getClassList,
@@ -21,7 +21,7 @@
     return [...classNames];
   }
 
-  /** @param {string} value */
+  /** @param {string} className */
   function addClassName(className) {
     if (de.classList) {
       de.classList.add(className);
@@ -30,7 +30,7 @@
     }
   }
 
-  /** @param {string} value */
+  /** @param {string} className */
   function removeClassName(className) {
     if (de.classList) {
       de.classList.remove(className);

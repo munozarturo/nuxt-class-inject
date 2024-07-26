@@ -56,7 +56,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       classInject: {
-        classList,
+        classList: classList,
       },
     },
   };

@@ -21,9 +21,8 @@
       </button>
     </div>
     <pre ref="codeBlock" class="p-2 whitespace-pre-wrap overflow-x-auto bg-background-secondary">
-        {{ activeContent }}
-      </pre
-    >
+      {{ activeContent }}
+    </pre>
     <div
       v-if="file"
       class="absolute bottom-1 right-1 p-1 text-sm bg-background-secondary text-foreground-secondary opacity-0 transition-opacity duration-200 group-hover:opacity-0 group-[.show-file]:opacity-100"
