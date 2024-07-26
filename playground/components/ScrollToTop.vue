@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="mounted"
-    class="fixed bottom-12 right-12 transition-opacity duration-700 ease-in-out"
+    class="fixed bottom-12 right-12 transition-opacity duration-200 ease-in-out"
     :class="{
       'opacity-0 pointer-events-none': !showButton,
       'opacity-100': showButton,
@@ -9,7 +9,7 @@
   >
     <button
       @click="scrollToTop"
-      class="text-highlight hover:text-background hover:bg-foreground p-1"
+      class="text-foreground-secondary hover:text-background hover:bg-foreground p-1"
     >
       scroll to top
     </button>

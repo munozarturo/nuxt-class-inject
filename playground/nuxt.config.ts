@@ -4,6 +4,6 @@ export default defineNuxtConfig({
   classInject: {
     fallback: ["font-mono", "theme-paper"],
   },
-  css: ["~/assets/main.css"],
+  css: ["~/assets/main.css", "~/assets/scrollbar.css"],
   compatibilityDate: "2024-07-25",
 });
