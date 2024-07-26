@@ -1,7 +1,7 @@
 import { Ref } from "vue";
 
 // Define the ClassInjectInstance interface
-interface ClassInjectInstance {
+export interface ClassInjectInstance {
   classList: Ref<string[]>;
 }
 

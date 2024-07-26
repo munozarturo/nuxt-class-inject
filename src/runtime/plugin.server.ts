@@ -8,7 +8,7 @@ interface ClassListInstance {
 export default defineNuxtPlugin((nuxtApp) => {
   const classList = nuxtApp.ssrContext?.islandContext
     ? ref([])
-    : useState<ClassListInstance>("class-inject-list", () =>
+    : useState<ClassListInstance>("class-inject", () =>
         reactive({
           value: [],
         })

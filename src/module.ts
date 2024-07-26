@@ -1,4 +1,4 @@
-import { addPlugin, addTemplate, createResolver, defineNuxtModule } from "@nuxt/kit";
+import { addImports, addPlugin, addTemplate, createResolver, defineNuxtModule } from "@nuxt/kit";
 
 import { promises as fsp } from "node:fs";
 import { resolve } from "pathe";
@@ -51,6 +51,12 @@ export default defineNuxtModule<ModuleOptions>({
     for (const template of ["plugin.client", "plugin.server"]) {
       addPlugin(resolve(runtimeDir, template));
     }
+
+    addImports({
+      name: "useClassInject",
+      as: "useClassInject",
+      from: resolve(runtimeDir, "composables"),
+    });
 
     // Nuxt 3 and Bridge - inject script
     nuxt.hook("nitro:config", (config) => {
