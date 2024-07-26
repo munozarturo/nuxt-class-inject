@@ -1,19 +1,19 @@
 {
-    "private": true,
-    "name": "nuxt-class-inject-playground",
-    "type": "module",
-    "scripts": {
-        "dev": "nuxi dev",
-        "build": "nuxi build",
-        "generate": "nuxi generate"
-    },
-    "dependencies": {
-        "nuxt": "^3.12.4"
-    },
-    "devDependencies": {
-        "@nuxtjs/tailwindcss": "^6.12.1",
-        "autoprefixer": "^10.4.19",
-        "postcss": "^8.4.40",
-        "tailwindcss": "^3.4.7"
-    }
+  "private": true,
+  "name": "nuxt-class-inject-playground",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "dependencies": {
+    "nuxt": "^3.12.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7"
+  }
 }

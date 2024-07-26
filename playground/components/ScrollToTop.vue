@@ -1,19 +1,19 @@
 <template>
-    <div
-        v-if="mounted"
-        class="fixed bottom-12 right-12 transition-opacity duration-700 ease-in-out"
-        :class="{
-            'opacity-0 pointer-events-none': !showButton,
-            'opacity-100': showButton,
-        }"
+  <div
+    v-if="mounted"
+    class="fixed bottom-12 right-12 transition-opacity duration-700 ease-in-out"
+    :class="{
+      'opacity-0 pointer-events-none': !showButton,
+      'opacity-100': showButton,
+    }"
+  >
+    <button
+      @click="scrollToTop"
+      class="text-highlight hover:text-background hover:bg-foreground p-1"
     >
-        <button
-            @click="scrollToTop"
-            class="text-highlight hover:text-background hover:bg-foreground p-1"
-        >
-            scroll to top
-        </button>
-    </div>
+      scroll to top
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -22,23 +22,23 @@ const mounted = ref<boolean>(false);
 const scrollThreshold = ref<number>(400);
 
 function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-    });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 function handleScroll() {
-    showButton.value = window.scrollY > scrollThreshold.value;
+  showButton.value = window.scrollY > scrollThreshold.value;
 }
 
 onMounted(() => {
-    window.addEventListener("scroll", handleScroll);
-    mounted.value = true;
-    scrollThreshold.value = window.screen.height / 3;
+  window.addEventListener("scroll", handleScroll);
+  mounted.value = true;
+  scrollThreshold.value = window.screen.height / 3;
 });
 
 onUnmounted(() => {
-    window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
