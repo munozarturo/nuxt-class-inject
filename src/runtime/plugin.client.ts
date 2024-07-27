@@ -1,6 +1,5 @@
 import { globalName, storageKey } from "#nuxt-class-inject-options";
-import { ref, watch } from "vue";
-
+import { ref, watch, computed } from "vue";
 import { defineNuxtPlugin } from "#app";
 
 interface ClassInjectHelper {
@@ -11,51 +10,50 @@ interface ClassInjectHelper {
 
 const helper = (window[globalName] || {}) as unknown as ClassInjectHelper;
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const getStoredClasses = (): string[] => {
-    try {
-      const classList = localStorage.getItem(storageKey);
-      if (classList) return JSON.parse(classList);
-      else {
-        const classList = helper.getClassList();
-        localStorage.setItem(storageKey, JSON.stringify(classList));
-        return classList;
-      }
-    } catch {
-      return [];
+function getStoredClasses(): string[] {
+  try {
+    const classList = localStorage.getItem(storageKey);
+    if (classList) return JSON.parse(classList);
+    else {
+      const classList = helper.getClassList();
+      localStorage.setItem(storageKey, JSON.stringify(classList));
+      return classList;
     }
-  };
+  } catch {
+    return [];
+  }
+}
 
-  const updateStorage = (classes: string[]) => {
-    localStorage.setItem(storageKey, JSON.stringify(classes));
-  };
+export default defineNuxtPlugin((nuxtApp) => {
+  const _classList = ref<string[]>(getStoredClasses());
 
-  const classList = ref<string[]>(getStoredClasses());
+  const classList = computed({
+    get: () => _classList.value,
+    set: (classList: string[]) => {
+      _classList.value = classList;
+    },
+  });
 
-  // Watch for changes in classList
   watch(
     classList,
     (newClasses, oldClasses) => {
-      // Find classes to add
       const classesToAdd = newClasses.filter((c) => !oldClasses.includes(c));
-      // Find classes to remove
       const classesToRemove = oldClasses.filter((c) => !newClasses.includes(c));
 
-      // Update DOM
       classesToAdd.forEach((c) => helper.addClassName(c));
       classesToRemove.forEach((c) => helper.removeClassName(c));
 
-      // Update localStorage
-      updateStorage(newClasses);
+      localStorage.setItem(storageKey, JSON.stringify(newClasses));
     },
     { deep: true }
   );
 
-  classList.value.forEach((className) => helper.addClassName(className));
+  _classList.value.forEach((className) => helper.addClassName(className));
 
   return {
     provide: {
       classInject: {
+        unknown: false,
         classList: classList,
       },
     },

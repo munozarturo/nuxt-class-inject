@@ -66,7 +66,7 @@ const themes: string[] = ["light", "paper", "dark", "desert", "ocean", "forest"]
 const currentTheme = ref<string | null>(null);
 
 const setFont = (font: string) => {
-  const current: string[] = $classInject.classList.value as unknown as string[];
+  const current: string[] = $classInject.classList.value;
 
   const classList = current.filter((cls) => !cls.startsWith("font-"));
   classList.push(`font-${font}`);
@@ -76,7 +76,7 @@ const setFont = (font: string) => {
 };
 
 const setTheme = (theme: string) => {
-  const current: string[] = $classInject.classList.value as unknown as string[];
+  const current: string[] = $classInject.classList.value;
 
   const classList = current.filter((cls) => !cls.startsWith("theme-"));
   classList.push(`theme-${theme}`);
@@ -86,7 +86,7 @@ const setTheme = (theme: string) => {
 };
 
 const computeCurrentFontAndTheme = () => {
-  const current: string[] = $classInject.classList.value as unknown as string[];
+  const current: string[] = $classInject.classList.value;
 
   fontTypes.forEach((font) => {
     if (current.includes(`font-${font}`)) currentFont.value = font;

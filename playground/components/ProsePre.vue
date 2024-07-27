@@ -2,22 +2,22 @@
   <div class="relative flex flex-col bg-background-secondary group">
     <div class="flex flex-row bg-foreground-secondary text-background py-1 px-2 justify-between">
       <p>{{ lang }}</p>
-      <button @click="copy">{{ copyText }}</button>
+      <p>{{ file }}</p>
     </div>
     <pre ref="codeBlock" class="p-2 overflow-x-auto">
         <code><slot></slot></code>
     </pre>
-    <div
-      v-if="file"
-      class="absolute bottom-1 right-1 p-1 text-sm bg-background-secondary text-foreground-secondary opacity-0 transition-opacity duration-200 group-hover:opacity-0 group-[.show-file]:opacity-100"
+    <button
+      @click="copy"
+      class="absolute bottom-2 right-2 p-1 text-sm bg-foreground text-background opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-[.show-file-multi]:opacity-100"
     >
-      {{ file }}
-    </div>
+      {{ copyText }}
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   lang: {
     type: String,
     required: false,

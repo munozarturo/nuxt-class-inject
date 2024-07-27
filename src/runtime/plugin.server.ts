@@ -1,24 +1,32 @@
 import { defineNuxtPlugin, useHead, useState } from "#imports";
-import { reactive, ref } from "vue";
-
-interface ClassListInstance {
-  value: string[];
-}
+import { ref, computed } from "vue";
+import type { ClassInjectInstance } from "./types";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const classList = nuxtApp.ssrContext?.islandContext
-    ? ref([])
-    : useState<ClassListInstance>("class-inject", () =>
-        reactive({
-          value: [],
-        })
-      );
+  const _classList = ref<string[]>([]);
+
+  const classList = computed({
+    get: () => _classList.value,
+    set: (classList: string[]) => {
+      _classList.value = classList;
+    },
+  });
+
+  const classInject: ClassInjectInstance = {
+    unknown: true,
+    classList,
+  };
+
+  const providedClassInject = nuxtApp.ssrContext?.islandContext
+    ? ref({})
+    : useState<ClassInjectInstance>("class-inject", () => classInject);
 
   const htmlAttrs: Record<string, string> = {};
   useHead({ htmlAttrs });
 
-  // Provide the classList to the app
-  nuxtApp.provide("classInject", {
-    classList: classList,
-  });
+  return {
+    provide: {
+      classInject: providedClassInject,
+    },
+  };
 });

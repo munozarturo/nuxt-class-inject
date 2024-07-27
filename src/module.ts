@@ -52,12 +52,6 @@ export default defineNuxtModule<ModuleOptions>({
       addPlugin(resolve(runtimeDir, template));
     }
 
-    addImports({
-      name: "useClassInject",
-      as: "useClassInject",
-      from: resolve(runtimeDir, "composables"),
-    });
-
     // Nuxt 3 and Bridge - inject script
     nuxt.hook("nitro:config", (config) => {
       config.externals = config.externals || {};

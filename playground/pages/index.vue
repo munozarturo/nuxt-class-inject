@@ -5,14 +5,14 @@
       <ProseH1>nuxt-class-inject</ProseH1>
       <ProseP>
         <ProseCode>nuxt-class-inject</ProseCode>
-        is a Nuxt module that allows persistent dynamic class injection before rendering. It is
-        useful for things like dynamic styling; since it injects CSS classes into the
+        is a Nuxt module that allows dynamic class injection before client rendering. It is useful
+        for things like dynamic styling; since it injects CSS classes into the
         <ProseCode>
           {{`
           <html />
           `}}</ProseCode
-        >&nbsp;component before rendering occurs on the client side it prevents common issues like
-        style flashing.
+        >&nbsp;component before rendering it prevents common issues like style flashing on client
+        load.
       </ProseP>
       <ProseP>
         This is achieved by leveraging the browser&lsquo;s local storage. Since it can be accessed
@@ -23,18 +23,18 @@
           <html />
           `}}</ProseCode
         >&nbsp;tag before the content is loaded. As an added bonus this also persists the injected
-        classes.
+        classes across same-browser sessions.
       </ProseP>
     </ProseSection>
     <ProseSection id="live-demo">
       <ProseH2>live demo</ProseH2>
       <ProseP>
-        Try it out by using the
+        You can see it in action by using the
         <ProseCode>customize</ProseCode>&nbsp;button at the top right of this page.
       </ProseP>
     </ProseSection>
     <ProseSection id="contents">
-      <ProseH2>contents</ProseH2>
+      <ProseH2>table of contents</ProseH2>
       <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
         <li>
           <a href="#features" class="hover:bg-foreground-secondary hover:text-background p-1">
@@ -59,6 +59,11 @@
         <li>
           <a href="#tailwind-css" class="hover:bg-foreground-secondary hover:text-background p-1">
             tailwind css
+          </a>
+        </li>
+        <li>
+          <a href="#notes" class="hover:bg-foreground-secondary hover:text-background p-1">
+            notes
           </a>
         </li>
         <li>
@@ -114,7 +119,7 @@
           class="hover:bg-foreground hover:text-background p-1 flex flex-row items-center gap-2"
         >
           <GitHubLogo class="w-6 h-6" />
-          <p class="text-xl font-bold">example app</p>
+          <p class="text-xl font-bold">example</p>
         </a>
       </div>
       <ProseP>
@@ -128,7 +133,7 @@
           injected classes.
         </li>
       </ul>
-      <ProsePre lang="vue">
+      <ProsePre lang="vue" file="app.vue">
         {{ exampleApp }}
       </ProsePre>
     </ProseSection>
@@ -165,7 +170,7 @@
           class="hover:bg-foreground hover:text-background p-1 flex flex-row items-center gap-2"
         >
           <GitHubLogo class="w-6 h-6" />
-          <p class="text-xl font-bold">example app</p>
+          <p class="text-xl font-bold">example</p>
         </a>
       </div>
       <ProseP>
@@ -180,6 +185,18 @@
       <ProsePre lang="js" file="tailwind.config.js">
         {{ tailwindConfig }}
       </ProsePre>
+    </ProseSection>
+    <ProseSection id="notes" class="flex flex-col gap-4">
+      <ProseH2>notes</ProseH2>
+      <ProseP> There are a couple of things to keep in mind when using this module. </ProseP>
+      <ol class="text-lg flex flex-col gap-1 pl-4 list-decimal">
+        <li>
+          Since the &ldquo;source of truth&rdquo; for the injected classes is on the client side
+          (the browser&lsquo;s storage), it means that during SSR the injected class list is not
+          known.
+        </li>
+        <li>Since the exposed <ProseCode>classList</ProseCode> is a ref to a string array.</li>
+      </ol>
     </ProseSection>
     <ProseSection id="credit" class="flex flex-col gap-4">
       <ProseH2>credit</ProseH2>

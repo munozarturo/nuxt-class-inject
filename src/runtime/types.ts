@@ -1,8 +1,9 @@
-import { Ref } from "vue";
+import { Ref, WritableComputedRef } from "vue";
 
 // Define the ClassInjectInstance interface
 export interface ClassInjectInstance {
-  classList: Ref<string[]>;
+  unknown: boolean;
+  classList: WritableComputedRef<string[]>;
 }
 
 // Define the PluginInjection interface for your module
