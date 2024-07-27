@@ -14,6 +14,15 @@ Dynamic class injection before client rendering
 Fast and efficient dynamic CSS class injection. CSS classes are injected into the `<html />` component before rendering avoiding flashing on client load.
 
 <!-- omit from toc -->
+## [Documentation + Live Demo](https://nuxt-class-inject.munozarturo.com/)
+
+<div align="center">
+  <picture>
+    <img alt="nuxt-class-inject Demo" src="https://www.munozarturo.com/assets/nuxt-class-inject/demo.gif" width="80%">
+  </picture>
+</div>
+
+<!-- omit from toc -->
 ## Features
 
 * Nuxt3 and Nuxt Bridge support
@@ -22,5 +31,5 @@ Fast and efficient dynamic CSS class injection. CSS classes are injected into th
 * Injectec CSS classes persist across same-browser sessions
 * Supports IE9+
 
-<!-- omit from toc -->
-## [Documentation + Live Demo](https://nuxt-class-inject.munozarturo.com/)
+
+
