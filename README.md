@@ -11,9 +11,11 @@
 
 <div align="center">
   <picture>
-    <img alt="nuxt-class-inject Demo" src="https://www.munozarturo.com/assets/nuxt-class-inject/demo.gif" width="80%">
+    <img alt="nuxt-class-inject Demo" src="https://www.munozarturo.com/assets/nuxt-class-inject/demo.gif" width="100%">
   </picture>
-  <a href="https://nuxt-class-inject.munozarturo.com/" target="_blank">Documentation + Live Demo</a>
+  <div style="width: 100%; text-align: center; margin-top: 10px;">
+    <a href="https://nuxt-class-inject.munozarturo.com/" target="_blank" style="display: inline-block;">Documentation + Live Demo</a>
+  </div>
 </div>
 
 Dynamic class injection before client rendering
