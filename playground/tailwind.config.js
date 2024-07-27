@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        foreground: "var(--foreground)",
-        background: "var(--background)",
-        highlight: "var(--highlight)",
+        "foreground": "var(--foreground)",
+        "background": "var(--background)",
+        "highlight": "var(--highlight)",
         "foreground-secondary": "var(--foreground-secondary)",
         "background-secondary": "var(--background-secondary)",
         "highlight-secondary": "var(--highlight-secondary)",

@@ -8,8 +8,8 @@
     }"
   >
     <button
-      @click="scrollToTop"
       class="text-foreground-secondary hover:text-background hover:bg-foreground p-1"
+      @click="scrollToTop"
     >
       scroll to top
     </button>

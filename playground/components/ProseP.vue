@@ -1,3 +1,5 @@
 <template>
-  <p class="text-lg"><slot></slot></p>
+  <p class="text-lg">
+    <slot />
+  </p>
 </template>

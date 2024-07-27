@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
 import { join, resolve } from "node:path";
-import { setup, useTestContext } from "@nuxt/test-utils";
 
 import { fileURLToPath } from "node:url";
 import { readFile } from "node:fs/promises";
+import { setup, useTestContext } from "@nuxt/test-utils";
+import { describe, expect, it } from "vitest";
 
 const fixture = fileURLToPath(new URL("../../playground", import.meta.url));
 
@@ -26,7 +26,7 @@ describe("ssr: true, target: static, generated files", () => {
     const files = ["index.html", "200.html"];
     for (const file of files) {
       const contents = await readFile(join(generateDir, file), "utf-8");
-      expect(contents).toMatch('getItem("nuxt-class-inject")');
+      expect(contents).toMatch("getItem(\"nuxt-class-inject\")");
     }
   });
 });

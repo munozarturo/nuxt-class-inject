@@ -4,12 +4,15 @@
       <p>{{ lang }}</p>
       <p>{{ file }}</p>
     </div>
-    <pre ref="codeBlock" class="p-2 overflow-x-auto">
-        <code><slot></slot></code>
+    <pre
+      ref="codeBlock"
+      class="p-2 overflow-x-auto"
+    >
+        <code><slot /></code>
     </pre>
     <button
-      @click="copy"
       class="absolute bottom-2 right-2 p-1 text-sm bg-foreground text-background opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-[.show-file-multi]:opacity-100"
+      @click="copy"
     >
       {{ copyText }}
     </button>
@@ -64,13 +67,15 @@ function copy(): void {
       setTimeout(() => {
         copyText.value = "copy";
       }, 2000);
-    } catch (e: any) {
+    }
+    catch (e) {
       copyText.value = "error copying";
       setTimeout(() => {
         copyText.value = "copy";
       }, 2000);
     }
-  } else {
+  }
+  else {
     copyText.value = "nothing to copy";
     setTimeout(() => {
       copyText.value = "copy";

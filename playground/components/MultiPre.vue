@@ -5,25 +5,28 @@
         <button
           v-for="tab in tabs"
           :key="tab"
-          @click="activeTab = tab"
           :class="[
             'cursor-pointer transition-colors duration-200 py-1 px-2 text-background',
             activeTab === tab
               ? 'bg-background-secondary text-foreground'
               : 'hover:bg-background-secondary hover:text-foreground',
           ]"
+          @click="activeTab = tab"
         >
           {{ tab }}
         </button>
       </div>
       <p>{{ file }}</p>
     </div>
-    <pre ref="codeBlock" class="p-2 whitespace-pre-wrap overflow-x-auto bg-background-secondary">
+    <pre
+      ref="codeBlock"
+      class="p-2 whitespace-pre-wrap overflow-x-auto bg-background-secondary"
+    >
       {{ activeContent }}
     </pre>
     <button
-      @click="copy"
       class="absolute bottom-2 right-2 p-1 text-sm bg-foreground text-background opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-[.show-file-multi]:opacity-100"
+      @click="copy"
     >
       {{ copyText }}
     </button>
@@ -34,9 +37,9 @@
 import { ref, computed } from "vue";
 
 const props = defineProps<{
-  tabs: string[];
-  contents: Record<string, string>;
-  file?: string;
+  tabs: string[]
+  contents: Record<string, string>
+  file?: string
 }>();
 
 const activeTab = ref(props.tabs[0]);
@@ -53,13 +56,15 @@ function copy(): void {
       setTimeout(() => {
         copyText.value = "copy";
       }, 2000);
-    } catch (e: any) {
+    }
+    catch (e) {
       copyText.value = "error copying";
       setTimeout(() => {
         copyText.value = "copy";
       }, 2000);
     }
-  } else {
+  }
+  else {
     copyText.value = "nothing to copy";
     setTimeout(() => {
       copyText.value = "copy";

@@ -1,6 +1,6 @@
-import { addImports, addPlugin, addTemplate, createResolver, defineNuxtModule } from "@nuxt/kit";
-
 import { promises as fsp } from "node:fs";
+import { addPlugin, addTemplate, createResolver, defineNuxtModule } from "@nuxt/kit";
+
 import { resolve } from "pathe";
 
 const DEFAULTS: ModuleOptions = {
@@ -39,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
           .map(
             ([key, value]) =>
               `export const ${key} = ${JSON.stringify(value, null, 2)}
-      `
+      `,
           )
           .join("\n"),
     }).dst;
@@ -61,7 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
       config.virtual["#nuxt-class-inject-script"] = `export const script = ${JSON.stringify(
         script,
         null,
-        2
+        2,
       )}`;
       config.plugins = config.plugins || [];
       config.plugins.push(resolve(runtimeDir, "nitro-plugin"));
@@ -73,13 +73,13 @@ export interface ModuleOptions {
   /**
    * @default 'nuxt-class-inject'
    */
-  storageKey: string;
+  storageKey: string
   /**
    * @default '__NUXT_CLASS_INJECT__'
    */
-  globalName: string;
+  globalName: string
   /**
    * @default '[]'
    */
-  fallback: string[];
+  fallback: string[]
 }

@@ -6,4 +6,5 @@ export default defineBuildConfig({
       options.treeshake = false;
     },
   },
+  externals: ["pathe"],
 });

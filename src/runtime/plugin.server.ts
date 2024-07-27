@@ -1,6 +1,6 @@
-import { defineNuxtPlugin, useHead, useState } from "#imports";
 import { ref, computed } from "vue";
 import type { ClassInjectInstance } from "./types";
+import { defineNuxtPlugin, useHead, useState } from "#imports";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const _classList = ref<string[]>([]);

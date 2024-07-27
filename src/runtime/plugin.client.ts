@@ -1,11 +1,11 @@
-import { globalName, storageKey } from "#nuxt-class-inject-options";
 import { ref, watch, computed } from "vue";
+import { globalName, storageKey } from "#nuxt-class-inject-options";
 import { defineNuxtPlugin } from "#app";
 
 interface ClassInjectHelper {
-  getClassList: () => string[];
-  addClassName: (className: string) => void;
-  removeClassName: (className: string) => void;
+  getClassList: () => string[]
+  addClassName: (className: string) => void
+  removeClassName: (className: string) => void
 }
 
 const helper = (window[globalName] || {}) as unknown as ClassInjectHelper;
@@ -19,12 +19,13 @@ function getStoredClasses(): string[] {
       localStorage.setItem(storageKey, JSON.stringify(classList));
       return classList;
     }
-  } catch {
+  }
+  catch {
     return [];
   }
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin((_nuxtApp) => {
   const _classList = ref<string[]>(getStoredClasses());
 
   const classList = computed({
@@ -37,18 +38,18 @@ export default defineNuxtPlugin((nuxtApp) => {
   watch(
     classList,
     (newClasses, oldClasses) => {
-      const classesToAdd = newClasses.filter((c) => !oldClasses.includes(c));
-      const classesToRemove = oldClasses.filter((c) => !newClasses.includes(c));
+      const classesToAdd = newClasses.filter(c => !oldClasses.includes(c));
+      const classesToRemove = oldClasses.filter(c => !newClasses.includes(c));
 
-      classesToAdd.forEach((c) => helper.addClassName(c));
-      classesToRemove.forEach((c) => helper.removeClassName(c));
+      classesToAdd.forEach(c => helper.addClassName(c));
+      classesToRemove.forEach(c => helper.removeClassName(c));
 
       localStorage.setItem(storageKey, JSON.stringify(newClasses));
     },
-    { deep: true }
+    { deep: true },
   );
 
-  _classList.value.forEach((className) => helper.addClassName(className));
+  _classList.value.forEach(className => helper.addClassName(className));
 
   return {
     provide: {
