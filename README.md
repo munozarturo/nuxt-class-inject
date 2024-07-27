@@ -18,7 +18,7 @@ Fast and efficient dynamic CSS class injection. CSS classes are injected into th
     <img alt="nuxt-class-inject Demo" src="https://www.munozarturo.com/assets/nuxt-class-inject/demo.gif" width="100%">
   </picture>
   <div style="width: 100%; text-align: center; margin-top: 10px;">
-    <a href="https://nuxt-class-inject.munozarturo.com/" target="_blank" style="display: inline-block;">Documentation + Live Demo</a>
+    <a href="https://nuxt-class-inject.munozarturo.com/" target="_blank" style="display: inline-block;">Live Demo + Docs</a>
   </div>
 </div>
 
@@ -34,6 +34,6 @@ Fast and efficient dynamic CSS class injection. CSS classes are injected into th
 <!-- omit from toc -->
 ## Links
 
-* [Documentation + Live Demo](https://nuxt-class-inject.munozarturo.com)
-* [Nuxt3 App Example](https://github.com/munozarturo/nuxt-class-inject-example)
-* [Nuxt3 + Tailwind CSS App Example](https://github.com/munozarturo/nuxt-class-inject-tailwind-example)
+* [Live Demo + Docs](https://nuxt-class-inject.munozarturo.com)
+* [Nuxt3 Example App](https://github.com/munozarturo/nuxt-class-inject-example)
+* [Nuxt3 + Tailwind CSS Example App](https://github.com/munozarturo/nuxt-class-inject-tailwind-example)
