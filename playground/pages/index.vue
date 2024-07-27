@@ -3,28 +3,33 @@
   <div class="w-full max-w-[700px] flex flex-col gap-8 px-4 pt-4 pb-8">
     <ProseSection id="top">
       <ProseH1>nuxt-class-inject</ProseH1>
+      <ProseP> Dynamic class injection before client rendering. </ProseP>
       <ProseP>
-        <ProseCode>nuxt-class-inject</ProseCode>
-        is a Nuxt module that allows dynamic class injection before client rendering. It is useful
-        for things like dynamic styling; since it injects CSS classes into the
+        Fast and efficient dynamic CSS class injection. CSS classes are injected into the
         <ProseCode>
           {{`
           <html />
           `}}</ProseCode
-        >&nbsp;component before rendering it prevents common issues like style flashing on client
-        load.
+        >&nbsp;component before rendering avoiding flashing on client load.
       </ProseP>
-      <ProseP>
-        This is achieved by leveraging the browser&lsquo;s local storage. Since it can be accessed
-        before rendering by using Nitro plugins Nuxt can determine what classes should be applied to
-        the
-        <ProseCode>
-          {{`
-          <html />
-          `}}</ProseCode
-        >&nbsp;tag before the content is loaded. As an added bonus this also persists the injected
-        classes across same-browser sessions.
-      </ProseP>
+    </ProseSection>
+    <ProseSection id="features" class="flex flex-col gap-4">
+      <ProseH2>features</ProseH2>
+      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+        <li>Nuxt3 and Nuxt Bridge support</li>
+        <li>
+          Inject CSS classes into
+          <ProseCode>
+            {{ `
+            <html />
+            ` }}
+          </ProseCode>
+          &nbsp;tag before browser rendering
+        </li>
+        <li>Works with client side and universal rendering</li>
+        <li>Injected CSS classes persist across same-browser sessions</li>
+        <li>Supports IE9+</li>
+      </ul>
     </ProseSection>
     <ProseSection id="live-demo">
       <ProseH2>live demo</ProseH2>
@@ -36,11 +41,6 @@
     <ProseSection id="contents">
       <ProseH2>table of contents</ProseH2>
       <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
-        <li>
-          <a href="#features" class="hover:bg-foreground-secondary hover:text-background p-1">
-            features
-          </a>
-        </li>
         <li>
           <a href="#setup" class="hover:bg-foreground-secondary hover:text-background p-1">
             setup
@@ -71,24 +71,6 @@
             credit
           </a>
         </li>
-      </ul>
-    </ProseSection>
-    <ProseSection id="features" class="flex flex-col gap-4">
-      <ProseH2>features</ProseH2>
-      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
-        <li>Nuxt 3 and Nuxt Bridge support</li>
-        <li>
-          Inject classes into
-          <ProseCode>
-            {{ `
-            <html />
-            ` }}
-          </ProseCode>
-          &nbsp;tag before content rendering
-        </li>
-        <li>Works with client side and universal rendering</li>
-        <li>Injected classes persist across sessions</li>
-        <li>Supports IE9+</li>
       </ul>
     </ProseSection>
     <ProseSection id="setup" class="flex flex-col gap-4">
@@ -198,13 +180,15 @@
           (the browser&lsquo;s storage), it means that during SSR the injected class list is not
           known.
         </li>
-        <li>
+        <li class="space-y-4">
           The exposed <ProseCode>classList</ProseCode> is a <ProseCode>{{ refType }}</ProseCode> so
           that the only way of upating the value is by overwriting it. This is done because
           <ProseCode>vue</ProseCode>&lsquo;s reactivity for arrays works on property access and
-          assignment and not internal array modifications.
+          assignment and not internal array modifications. The correct manner of updating
+          <ProseCode>classList</ProseCode> list is as follows:
         </li>
       </ol>
+      <ProsePre lang="vue">{{ updateClassList }}</ProsePre>
     </ProseSection>
     <ProseSection id="credit" class="flex flex-col gap-4">
       <ProseH2>credit</ProseH2>
@@ -314,4 +298,11 @@ export default {
 `;
 
 const refType = `WriteableComputedRef<string[]>`;
+
+const updateClassList = ` 
+const classList: string[] = $classInject.classList.value;
+
+// make changes to classList
+
+$classInject.classList.value = classList;`;
 </script>
