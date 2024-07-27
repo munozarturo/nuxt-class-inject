@@ -76,18 +76,18 @@
     <ProseSection id="setup" class="flex flex-col gap-4">
       <ProseH2>setup</ProseH2>
       <ProseP>
-        Add the <ProseCode>@nuxt-class-inject</ProseCode>&nbsp;dependency to your project.
+        Add the <ProseCode>nuxt-class-inject</ProseCode>&nbsp;dependency to your project.
       </ProseP>
       <MultiPre
         :tabs="['yarn', 'npm', 'pnpm']"
         :contents="{
-          yarn: '\nyarn add --dev @nuxt-class-inject',
-          npm: '\nnpm install --save-dev @nuxt-class-inject',
-          pnpm: '\npnpm install --save-dev @nuxt-class-inject',
+          yarn: '\nyarn add --dev nuxt-class-inject',
+          npm: '\nnpm install --save-dev nuxt-class-inject',
+          pnpm: '\npnpm install --save-dev nuxt-class-inject',
         }"
       />
       <ProseP>
-        Then add <ProseCode>@nuxt-class-inject</ProseCode>&nbsp;to the
+        Then add <ProseCode>nuxt-class-inject</ProseCode>&nbsp;to the
         <ProseCode>modules</ProseCode>&nbsp;section of your <ProseCode>nuxt.config.ts</ProseCode>
       </ProseP>
       <ProsePre lang="bash" file="nuxt.config.ts">{{ nuxtConfigDefineModule }}</ProsePre>
@@ -214,13 +214,13 @@ useHead({
 const nuxtConfigDefineModule = `
 export default defineNuxtConfig({
   modules: [
-    "@nuxt-class-inject", 
+    "nuxt-class-inject", 
   ],
 });`;
 
 const nuxtCofigConfigModule = `
 export default defineNuxtConfig {
-  modules: ["@nuxt-class-inject",],
+  modules: ["nuxt-class-inject",],
   classInject: {
     storageKey: "nuxt-class-inject",
     globalName: "__NUXT_CLASS_INJECT__",
