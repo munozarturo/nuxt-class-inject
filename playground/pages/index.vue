@@ -29,7 +29,7 @@
     <ProseSection id="live-demo">
       <ProseH2>live demo</ProseH2>
       <ProseP>
-        You can see it in action by using the
+        You can see this module in action by using the
         <ProseCode>customize</ProseCode>&nbsp;button at the top right of this page.
       </ProseP>
     </ProseSection>
@@ -123,11 +123,14 @@
         </a>
       </div>
       <ProseP>
-        The injected <ProseCode>classList</ProseCode> can be accessed by calling
-        <ProseCode>useClassInject()</ProseCode> or by accessing
-        <ProseCode>$classInject</ProseCode> directly. This helper has one property:
+        The injected <ProseCode>classList</ProseCode> can be accessed through
+        <ProseCode>$classInject</ProseCode> directly. This helper has two properties:
       </ProseP>
       <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+        <li>
+          <ProseCode>unknown</ProseCode>: a boolean value, <ProseCode>true</ProseCode> if the
+          <ProseCode>classList</ProseCode> is unknown, <ProseCode>false</ProseCode> otherwise.
+        </li>
         <li>
           <ProseCode>classList</ProseCode>: the list of injected classes, update it to change
           injected classes.
@@ -195,7 +198,12 @@
           (the browser&lsquo;s storage), it means that during SSR the injected class list is not
           known.
         </li>
-        <li>Since the exposed <ProseCode>classList</ProseCode> is a ref to a string array.</li>
+        <li>
+          The exposed <ProseCode>classList</ProseCode> is a <ProseCode>{{ refType }}</ProseCode> so
+          that the only way of upating the value is by overwriting it. This is done because
+          <ProseCode>vue</ProseCode>&lsquo;s reactivity for arrays works on property access and
+          assignment and not internal array modifications.
+        </li>
       </ol>
     </ProseSection>
     <ProseSection id="credit" class="flex flex-col gap-4">
@@ -304,4 +312,6 @@ export default {
     },
 };
 `;
+
+const refType = `WriteableComputedRef<string[]>`;
 </script>
