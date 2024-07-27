@@ -6,7 +6,12 @@
   </picture>
 </div>
 
-<hr>
+<!-- omit from toc -->
+# nuxt-class-inject
+
+Dynamic class injection before client rendering
+
+Fast and efficient dynamic CSS class injection. CSS classes are injected into the `<html />` component before rendering avoiding flashing on client load.
 
 <div align="center">
   <picture>
@@ -16,13 +21,6 @@
     <a href="https://nuxt-class-inject.munozarturo.com/" target="_blank" style="display: inline-block;">Documentation + Live Demo</a>
   </div>
 </div>
-
-<!-- omit from toc -->
-# nuxt-class-inject
-
-Dynamic class injection before client rendering
-
-Fast and efficient dynamic CSS class injection. CSS classes are injected into the `<html />` component before rendering avoiding flashing on client load.
 
 <!-- omit from toc -->
 ## Features
