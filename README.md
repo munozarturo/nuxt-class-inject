@@ -30,3 +30,10 @@ Fast and efficient dynamic CSS class injection. CSS classes are injected into th
 * Works with client side and universal rendering
 * Injectec CSS classes persist across same-browser sessions
 * Supports IE9+
+
+<!-- omit from toc -->
+## Links
+
+* [Documentation + Live Demo](https://nuxt-class-inject.munozarturo.com)
+* [Nuxt3 App Example](https://github.com/munozarturo/nuxt-class-inject-example)
+* [Nuxt3 + Tailwind CSS App Example](https://github.com/munozarturo/nuxt-class-inject-tailwind-example)
