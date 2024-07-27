@@ -1,7 +1,7 @@
 {
   "name": "nuxt-class-inject",
   "version": "1.0.0",
-  "description": "My new Nuxt module",
+  "description": "Nuxt3 Dynamic Class Injection",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/munozarturo/nuxt-class-inject.git"
