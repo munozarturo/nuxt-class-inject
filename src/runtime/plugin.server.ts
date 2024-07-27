@@ -12,7 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         reactive({
           value: [],
         })
-      ).value;
+      );
 
   const htmlAttrs: Record<string, string> = {};
   useHead({ htmlAttrs });

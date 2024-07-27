@@ -106,7 +106,17 @@
       <ProsePre lang="bash" file="nuxt.config.ts">{{ nuxtConfigDefineModule }}</ProsePre>
     </ProseSection>
     <ProseSection id="usage" class="flex flex-col gap-4">
-      <ProseH2>usage</ProseH2>
+      <div class="w-full flex flex-row items-center gap-4">
+        <ProseH2>usage</ProseH2>
+        <a
+          href="https://github.com/munozarturo/nuxt-class-inject-example"
+          target="_blank"
+          class="hover:bg-foreground hover:text-background p-1 flex flex-row items-center gap-2"
+        >
+          <GitHubLogo class="w-6 h-6" />
+          <p class="text-xl font-bold">example app</p>
+        </a>
+      </div>
       <ProseP>
         The injected <ProseCode>classList</ProseCode> can be accessed by calling
         <ProseCode>useClassInject()</ProseCode> or by accessing
@@ -147,12 +157,29 @@
       </ul>
     </ProseSection>
     <ProseSection id="tailwind-css" class="flex flex-col gap-4">
-      <ProseH2>tailwind css</ProseH2>
-      <ProseP
-        >This module has high interoperability with tailwind css. All you have to do is define
-        variables in your CSS classes instead of changing styles directly, and then register these
-        variables in the project&lsquo;s <ProseCode>tailwind.config.js</ProseCode> file.
+      <div class="flex flex-row items-center gap-4">
+        <ProseH2>tailwind css</ProseH2>
+        <a
+          href="https://github.com/munozarturo/nuxt-class-inject-tailwind-example"
+          target="_blank"
+          class="hover:bg-foreground hover:text-background p-1 flex flex-row items-center gap-2"
+        >
+          <GitHubLogo class="w-6 h-6" />
+          <p class="text-xl font-bold">example app</p>
+        </a>
+      </div>
+      <ProseP>
+        To work with Tailwind CSS change your CSS classes to change the value of variables:
       </ProseP>
+      <ProsePre lang="vue" file="app.vue">
+        {{ tailwindExampleApp }}
+      </ProsePre>
+      <ProseP>
+        Then register thos variables in the <ProseCode>tailwind.config.js</ProseCode> file:
+      </ProseP>
+      <ProsePre lang="js" file="tailwind.config.js">
+        {{ tailwindConfig }}
+      </ProsePre>
     </ProseSection>
     <ProseSection id="credit" class="flex flex-col gap-4">
       <ProseH2>credit</ProseH2>
@@ -194,41 +221,70 @@ export default defineNuxtConfig {
 
 const exampleApp = `
 <template>
-  <div>
-    <h1>class list: {{ $classInject.classList }}</h1>
-    <select v-model="$colorMode.preference">
-      <option value="system">System</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-      <option value="sepia">Sepia</option>
-    </select>
-  </div>
+    <div>
+        <button
+            v-for="theme in themes"
+            @click="setTheme(theme)"
+        >
+            {{ theme }}
+        </button>
+    </div>
 </template>
 
-<script setup>
-  const classInject = useClassInject();
+<script setup lang="ts">
+const { $classInject } = useNuxtApp();
 
-  console.log(classInject.classList);
+const themes: string[] = ["theme-light", "theme-dark"];
+const setTheme = (theme: string) => {
+    const current: string[] = $classInject.classList.value;
+
+    const classList = current.filter((cls) => {
+      return !cls.startsWith("theme-")
+    });
+    classList.push(theme);
+
+    $classInject.classList.value = classList;
+};
 <\/script>
 
-<style>
-  body {
-    background-color: #fff;
-    color: rgba(0, 0, 0, 0.8);
-  }
+<style lang="css">
+.theme-light {
+    background-color: #1e1e1e;
+    color: #fefefe;
+}
 
-  .dark-mode body {
-    background-color: #091a28;
-    color: #ebf4f1;
-  }
+.theme-dark {
+    background-color: #fefefe;
+    color: #1e1e1e;
+}
+</style>
+`;
 
-  .sepia-mode body {
-    background-color: #f1e7d0;
-    color: #433422;
-  }
-</style>`;
+const tailwindExampleApp = `
+<style lang="css">
+.theme-light {
+    --foreground: #1e1e1e;
+    --background: #fefefe;
+}
 
-const tailwindConfig = ``;
+.theme-dark {
+    --foreground: #fefefe;
+    --background: #1e1e1e;
+}
+</style>
+`;
 
-const tailwindExampleApp = ``;
+const tailwindConfig = `
+/** @type {import('tailwindcss').Config} */
+export default {
+    theme: {
+        extend: {
+            colors: {
+                foreground: "var(--foreground)",
+                background: "var(--background)",
+            },
+        },
+    },
+};
+`;
 </script>
