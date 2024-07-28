@@ -1,5 +1,5 @@
 <template>
-  <ScrollToTop />
+  <ScrollToTop class="" />
   <div class="w-full max-w-[700px] flex flex-col gap-8 px-4 pt-4 pb-8">
     <ProseSection id="top">
       <ProseH1>nuxt-class-inject</ProseH1>
@@ -9,16 +9,13 @@
         <ProseCode>
           {{ `
           <html />
-          ` }}
-        </ProseCode>&nbsp;component before rendering avoiding flashing on client load.
+          ` }} </ProseCode
+        >&nbsp;component before rendering avoiding flashing on client load.
       </ProseP>
     </ProseSection>
-    <ProseSection
-      id="features"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="features" class="flex flex-col gap-4">
       <ProseH2>features</ProseH2>
-      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+      <ul class="text-md md:text-lg flex flex-col gap-1 pl-4 list-disc">
         <li>Nuxt3 and Nuxt Bridge support</li>
         <li>
           Inject CSS classes into
@@ -43,61 +40,40 @@
     </ProseSection>
     <ProseSection id="contents">
       <ProseH2>table of contents</ProseH2>
-      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+      <ul class="text-md md:text-lg flex flex-col gap-1 pl-4 list-disc">
         <li>
-          <a
-            href="#setup"
-            class="hover:bg-foreground-secondary hover:text-background p-1"
-          >
+          <a href="#setup" class="hover:bg-foreground-secondary hover:text-background p-1">
             setup
           </a>
         </li>
         <li>
-          <a
-            href="#usage"
-            class="hover:bg-foreground-secondary hover:text-background p-1"
-          >
+          <a href="#usage" class="hover:bg-foreground-secondary hover:text-background p-1">
             usage
           </a>
         </li>
         <li>
-          <a
-            href="#configuration"
-            class="hover:bg-foreground-secondary hover:text-background p-1"
-          >
+          <a href="#configuration" class="hover:bg-foreground-secondary hover:text-background p-1">
             configuration
           </a>
         </li>
         <li>
-          <a
-            href="#tailwind-css"
-            class="hover:bg-foreground-secondary hover:text-background p-1"
-          >
+          <a href="#tailwind-css" class="hover:bg-foreground-secondary hover:text-background p-1">
             tailwind css
           </a>
         </li>
         <li>
-          <a
-            href="#notes"
-            class="hover:bg-foreground-secondary hover:text-background p-1"
-          >
+          <a href="#notes" class="hover:bg-foreground-secondary hover:text-background p-1">
             notes
           </a>
         </li>
         <li>
-          <a
-            href="#credit"
-            class="hover:bg-foreground-secondary hover:text-background p-1"
-          >
+          <a href="#credit" class="hover:bg-foreground-secondary hover:text-background p-1">
             credit
           </a>
         </li>
       </ul>
     </ProseSection>
-    <ProseSection
-      id="setup"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="setup" class="flex flex-col gap-4">
       <ProseH2>setup</ProseH2>
       <ProseP>
         Add the <ProseCode>nuxt-class-inject</ProseCode>&nbsp;dependency to your project.
@@ -114,17 +90,11 @@
         Then add <ProseCode>nuxt-class-inject</ProseCode>&nbsp;to the
         <ProseCode>modules</ProseCode>&nbsp;section of your <ProseCode>nuxt.config.ts</ProseCode>
       </ProseP>
-      <ProsePre
-        lang="bash"
-        file="nuxt.config.ts"
-      >
+      <ProsePre lang="bash" file="nuxt.config.ts">
         {{ nuxtConfigDefineModule }}
       </ProsePre>
     </ProseSection>
-    <ProseSection
-      id="usage"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="usage" class="flex flex-col gap-4">
       <div class="w-full flex flex-row items-center gap-4">
         <ProseH2>usage</ProseH2>
         <a
@@ -140,7 +110,7 @@
         The injected <ProseCode>classList</ProseCode> can be accessed through
         <ProseCode>$classInject</ProseCode> directly. This helper has two properties:
       </ProseP>
-      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+      <ul class="text-md md:text-lg flex flex-col gap-1 pl-4 list-disc">
         <li>
           <ProseCode>unknown</ProseCode>: a boolean value, <ProseCode>true</ProseCode> if the
           <ProseCode>classList</ProseCode> is unknown, <ProseCode>false</ProseCode> otherwise.
@@ -150,30 +120,21 @@
           injected classes.
         </li>
       </ul>
-      <ProsePre
-        lang="vue"
-        file="app.vue"
-      >
+      <ProsePre lang="vue" file="app.vue">
         {{ exampleApp }}
       </ProsePre>
     </ProseSection>
-    <ProseSection
-      id="configuration"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="configuration" class="flex flex-col gap-4">
       <ProseH2>configuration</ProseH2>
       <ProseP>
         You can configure the module through the <ProseCode>classInject</ProseCode> property in your
         <ProseCode>nuxt.config.js</ProseCode>. The default options are
       </ProseP>
-      <ProsePre
-        lang="ts"
-        file="nuxt.config.js"
-      >
+      <ProsePre lang="ts" file="nuxt.config.js">
         {{ nuxtCofigConfigModule }}
       </ProsePre>
       <ProseP>The config options are:</ProseP>
-      <ul class="text-lg flex flex-col gap-1 pl-4 list-disc">
+      <ul class="text-md md:text-lg flex flex-col gap-1 pl-4 list-disc">
         <li>
           <ProseCode>storageKey</ProseCode>: the storage key used to store injected classes in the
           browser&lsquo;s local storage
@@ -189,10 +150,7 @@
         </li>
       </ul>
     </ProseSection>
-    <ProseSection
-      id="tailwind-css"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="tailwind-css" class="flex flex-col gap-4">
       <div class="flex flex-row items-center gap-4">
         <ProseH2>tailwind css</ProseH2>
         <a
@@ -207,29 +165,20 @@
       <ProseP>
         To work with Tailwind CSS change your CSS classes to change the value of variables:
       </ProseP>
-      <ProsePre
-        lang="vue"
-        file="app.vue"
-      >
+      <ProsePre lang="vue" file="app.vue">
         {{ tailwindExampleApp }}
       </ProsePre>
       <ProseP>
         Then register thos variables in the <ProseCode>tailwind.config.js</ProseCode> file:
       </ProseP>
-      <ProsePre
-        lang="js"
-        file="tailwind.config.js"
-      >
+      <ProsePre lang="js" file="tailwind.config.js">
         {{ tailwindConfig }}
       </ProsePre>
     </ProseSection>
-    <ProseSection
-      id="notes"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="notes" class="flex flex-col gap-4">
       <ProseH2>notes</ProseH2>
       <ProseP> There are a couple of things to keep in mind when using this module. </ProseP>
-      <ol class="text-lg flex flex-col gap-1 pl-4 list-decimal">
+      <ol class="text-md md:text-lg flex flex-col gap-1 pl-6 list-decimal">
         <li>
           Since the &ldquo;source of truth&rdquo; for the injected classes is on the client side
           (the browser&lsquo;s storage), it means that during SSR the injected class list is not
@@ -247,10 +196,7 @@
         {{ updateClassList }}
       </ProsePre>
     </ProseSection>
-    <ProseSection
-      id="credit"
-      class="flex flex-col gap-4"
-    >
+    <ProseSection id="credit" class="flex flex-col gap-4">
       <ProseH2>credit</ProseH2>
       <ProseP>
         This module is &ldquo;heavily inspired&rdquo; by the
@@ -258,7 +204,8 @@
           href="https://github.com/nuxt-modules/color-mode"
           target="_blank"
           class="underline bg-foreground-secondary text-background p-1"
-        >nuxt-color-mode</a>&NonBreakingSpace;module. i.e. I comlpetely ripped it off, altered it slightly to better
+          >nuxt-color-mode</a
+        >&NonBreakingSpace;module. i.e. I comlpetely ripped it off, altered it slightly to better
         suit my needs, and called it my own.
       </ProseP>
     </ProseSection>
