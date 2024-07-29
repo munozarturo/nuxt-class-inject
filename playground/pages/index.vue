@@ -90,7 +90,7 @@
         Then add <ProseCode>nuxt-class-inject</ProseCode>&nbsp;to the
         <ProseCode>modules</ProseCode>&nbsp;section of your <ProseCode>nuxt.config.ts</ProseCode>
       </ProseP>
-      <ProsePre lang="bash" file="nuxt.config.ts">
+      <ProsePre lang="ts" file="nuxt.config.ts">
         {{ nuxtConfigDefineModule }}
       </ProsePre>
     </ProseSection>
